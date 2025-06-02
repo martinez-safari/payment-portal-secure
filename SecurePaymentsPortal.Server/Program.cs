@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// ✅ Allow CORS for frontend calls (optional for API testing)
+// ✅ Allow CORS for frontend calls
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -30,53 +30,57 @@ var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-// Configure the HTTP request pipeline.
+// ✅ Swagger only in development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+// ✅ Enforce HTTPS
+app.UseHttpsRedirection();
+
+// ✅ Security headers middleware
+app.Use(async (ctx, next) =>
+{
+    ctx.Response.Headers.Add("X-Frame-Options", "DENY");
+    ctx.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
+    ctx.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+    await next();
+});
+
 // ✅ Enable CORS
 app.UseCors("AllowAll");
 
-app.UseHttpsRedirection();
-
+// ✅ Auth pipeline (optional if [Authorize] is used)
 app.UseAuthorization();
 
+// ✅ Map API
 app.MapControllers();
 
-// ✅ Route unmatched paths to React SPA
+// ✅ Fallback to React app
 app.MapFallbackToFile("/index.html");
 
-// ✅ SEED OR UPDATE EMPLOYEE (update username + password if needed)
+// ✅ SEED or UPDATE ADMIN EMPLOYEE
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.EnsureCreated();
 
-    // Find the existing employee (by old username)
     var existingEmployee = db.Employees.FirstOrDefault(e => e.Username == "Employee");
 
     var hasher = new PasswordHasher<Employee>();
 
     if (existingEmployee != null)
     {
-        // 🛠 Update username and password
         existingEmployee.Username = "Admin";
         existingEmployee.PasswordHash = hasher.HashPassword(existingEmployee, "Admin123");
-
         db.SaveChanges();
     }
     else
     {
-        // Create if none exists
-        var employee = new Employee
-        {
-            Username = "Admin"
-        };
+        var employee = new Employee { Username = "Admin" };
         employee.PasswordHash = hasher.HashPassword(employee, "Admin123");
-
         db.Employees.Add(employee);
         db.SaveChanges();
     }
