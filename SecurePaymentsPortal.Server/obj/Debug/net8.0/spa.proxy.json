@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:63812",
+"RedirectUrl": "",
+"LaunchCommand": "npm run dev",
+"WorkingDirectory": "C:\\Users\\Owner\\source\\repos\\SecurePaymentsPortal\\SecurePaymentsPortal.Server\\..\\securepaymentsportal.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}

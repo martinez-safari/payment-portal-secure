@@ -1,0 +1,24 @@
+{
+  "Version": 1,
+  "Hash": "fO5FSQ1DhEVaOC83/crC3PAbgzBLM9V865/+e4BoRhc=",
+  "Source": "SecurePaymentsPortal.Server",
+  "BasePath": "_content/SecurePaymentsPortal.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\Owner\\source\\repos\\SecurePaymentsPortal\\securepaymentsportal.client\\securepaymentsportal.client.esproj",
+      "Version": 2,
+      "Source": "securepaymentsportal.client",
+      "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
