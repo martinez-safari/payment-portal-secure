@@ -1,4 +1,4 @@
-version: 2.1  # update to version: 2.1 # minor comment tweak
+version: 2.1
 
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/dotnet:8.0
+      - image: cimg/dotnet:6.0
     steps:
       - checkout
       - run:
@@ -18,10 +18,9 @@ jobs:
       - run:
           name: Test
           command: dotnet test --no-build --verbosity normal
-      - sonarsource/scan
+      - sonarcloud/scan
 
 workflows:
-  version: 2
   build-and-analyze:
     jobs:
       - build
