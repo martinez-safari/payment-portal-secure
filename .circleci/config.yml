@@ -1,7 +1,7 @@
 version: 2.1  # update to version: 2.1 # minor comment tweak
 
 orbs:
-  sonarsource: sonarsource/sonarcloud@1.1.1
+  sonarcloud: sonarsource/sonarcloud@1.0.1
 
 jobs:
   build:
