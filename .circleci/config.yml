@@ -1,12 +1,12 @@
 version: 2.1
 
 orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.1
+  sonarcloud: sonarsource/sonarcloud@1.1.2
 
 jobs:
   build:
     docker:
-      - image: cimg/dotnet:6.0
+      - image: cimg/dotnet:8.0  # or cimg/dotnet:6.0 depending on your .NET version
     steps:
       - checkout
       - run:
@@ -16,7 +16,7 @@ jobs:
           name: Build
           command: dotnet build --no-restore
       - run:
-          name: Test
+          name: Run tests
           command: dotnet test --no-build --verbosity normal
       - sonarcloud/scan
 
