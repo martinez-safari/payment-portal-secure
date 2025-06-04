@@ -10,6 +10,13 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Node.js
+          command: |
+            curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+            apt-get install -y nodejs
+            node -v
+            npm -v
+      - run:
           name: Restore dependencies
           command: dotnet restore
       - run:
@@ -29,7 +36,6 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - checkout
       - sonarcloud/scan
 
 workflows:
