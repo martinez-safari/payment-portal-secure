@@ -9,20 +9,19 @@ jobs:
       - image: mcr.microsoft.com/dotnet/sdk:8.0
     steps:
       - checkout
-      - run:
-          name: Install Node.js
-          command: |
-            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-            sudo apt-get install -y nodejs
+
       - run:
           name: Restore dependencies
           command: dotnet restore
+
       - run:
           name: Build the solution
           command: dotnet build --no-restore
+
       - run:
           name: Run tests
           command: dotnet test --no-build --verbosity normal
+
       - persist_to_workspace:
           root: .
           paths:
@@ -30,11 +29,12 @@ jobs:
 
   sonarcloud_scan:
     docker:
-      - image: cimg/openjdk:17.0
+      - image: cimg/openjdk:21.0  # Java 21 supports class file version 61
     steps:
       - checkout
       - attach_workspace:
           at: .
+
       - run:
           name: Install unzip and Node.js
           command: |
@@ -42,6 +42,7 @@ jobs:
             sudo apt-get install -y unzip curl gnupg
             curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
             sudo apt-get install -y nodejs
+
       - sonarcloud/scan
 
 workflows:
