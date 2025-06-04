@@ -10,13 +10,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Node.js
-          command: |
-            apt-get update
-            apt-get install -y curl gnupg
-            curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-            apt-get install -y nodejs
-      - run:
           name: Restore dependencies
           command: dotnet restore
       - run:
@@ -32,17 +25,16 @@ jobs:
 
   sonarcloud_scan:
     docker:
-      - image: cimg/node:18.20-browsers
+      - image: cimg/node:18.20-browsers  # Includes Java 17
     steps:
       - checkout
       - attach_workspace:
           at: .
       - run:
-          name: Confirm Java, Node, and unzip are available
+          name: Check Java and Node versions
           command: |
             java -version
             node -v
-            unzip -v
       - sonarcloud/scan
 
 workflows:
