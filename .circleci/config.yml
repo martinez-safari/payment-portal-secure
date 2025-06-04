@@ -6,23 +6,29 @@ orbs:
 jobs:
   build:
     docker:
-      - image: mcr.microsoft.com/dotnet/sdk:7.0
+      - image: mcr.microsoft.com/dotnet/sdk:8.0
     steps:
       - checkout
       - run:
           name: Restore dependencies
           command: dotnet restore
       - run:
-          name: Build project
+          name: Build the solution
           command: dotnet build --no-restore
       - run:
           name: Run tests
-          command: dotnet test --no-build --logger:trx
+          command: dotnet test --no-build --verbosity normal
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
 
   sonarcloud_scan:
     docker:
-      - image: mcr.microsoft.com/dotnet/sdk:7.0
+      - image: mcr.microsoft.com/dotnet/sdk:8.0
     steps:
+      - attach_workspace:
+          at: .
       - checkout
       - sonarcloud/scan
 
