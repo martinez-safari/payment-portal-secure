@@ -12,8 +12,8 @@ jobs:
       - run:
           name: Install Node.js
           command: |
-            curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-            apt-get install -y nodejs
+            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+            sudo apt-get install -y nodejs
       - run:
           name: Restore dependencies
           command: dotnet restore
@@ -28,7 +28,7 @@ jobs:
           paths:
             - .
 
-    sonarcloud_scan:
+  sonarcloud_scan:
     docker:
       - image: cimg/openjdk:17.0
     steps:
@@ -40,7 +40,7 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install -y unzip curl gnupg
-            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo bash -
+            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
             sudo apt-get install -y nodejs
       - sonarcloud/scan
 
