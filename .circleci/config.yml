@@ -30,14 +30,18 @@ jobs:
 
   sonarcloud_scan:
     docker:
-      - image: mcr.microsoft.com/dotnet/sdk:8.0
+      - image: cimg/openjdk:17.0  # Java 17 required by SonarCloud
     steps:
       - checkout
       - attach_workspace:
           at: .
       - run:
-          name: Install unzip
-          command: apt-get update && apt-get install -y unzip
+          name: Install unzip and Node.js
+          command: |
+            apt-get update
+            apt-get install -y unzip curl gnupg
+            curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+            apt-get install -y nodejs
       - sonarcloud/scan
 
 workflows:
