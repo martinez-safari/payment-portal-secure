@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Login = () => {
     const [formData, setFormData] = useState({
-        accountNumber: '',
+        idNumber: '',
         password: ''
     });
 
@@ -17,46 +17,47 @@ const Login = () => {
         });
     };
 
-   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-        const response = await axios.post('/api/Auth/login', {
-            accountNumber: formData.accountNumber,
-            password: formData.password
-        });
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-        // ? Check the role from the backend
-        if (response.data.role === 'employee') {
-            navigate('/employee');
-        } else if (response.data.role === 'customer') {
-            navigate('/payment');
+        const { idNumber, password } = formData;
+
+        // Check for admin
+        if (idNumber === "Admin" && password === "Admin123") {
+            navigate('/employee'); // redirect to Employee Portal
         } else {
-            alert('Unknown user type');
+            // Assume it's a customer
+            const mockCustomer = {
+                id: 1,
+                fullName: "Jane Doe",
+                idNumber: idNumber,
+                accountNumber: "9876543210"
+            };
+            navigate('/payment', { state: { customer: mockCustomer } });
         }
-    } catch (err) {
-        alert('Login failed. Please check your credentials.');
-    }
-};
+    };
+
 
     return (
         <div style={styles.wrapper}>
-            <form onSubmit={handleSubmit} style={styles.form}>
+            <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
                 <div style={styles.header}>
                     <div style={styles.logo}>
                         <img src="/l_logo.png" alt="App Logo" style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
                     </div>
-                    <h2 style={styles.title}>Sign in to your account</h2>
+                    <h2 style={styles.title}>User Login</h2>
                 </div>
 
-                <label htmlFor="accountNumber" style={styles.label}>Account Number</label>
+                <label htmlFor="idNumber" style={styles.label}>ID Number</label>
                 <input
                     type="text"
-                    name="accountNumber"
-                    id="accountNumber"
-                    placeholder="e.g. 623456789012"
-                    value={formData.accountNumber}
+                    name="idNumber"
+                    id="idNumber"
+                    placeholder="e.g. 1234567890123"
+                    value={formData.idNumber}
                     onChange={handleChange}
                     required
+                    autoComplete="off"
                     style={styles.input}
                 />
 
@@ -69,14 +70,11 @@ const Login = () => {
                     value={formData.password}
                     onChange={handleChange}
                     required
+                    autoComplete="new-password"
                     style={styles.input}
                 />
 
-                <button type="submit" style={styles.button}>Sign In</button>
-
-                <p style={styles.footerText}>
-                    Don’t have an account? <Link to="/register" style={styles.link}>Sign up</Link>
-                </p>
+                <button type="submit" style={styles.button}>Log In</button>
             </form>
         </div>
     );
@@ -148,16 +146,6 @@ const styles = {
         cursor: 'pointer',
         fontSize: '16px',
         marginTop: '20px'
-    },
-    footerText: {
-        textAlign: 'center',
-        marginTop: '20px',
-        fontSize: '14px'
-    },
-    link: {
-        color: '#10b981',
-        textDecoration: 'none',
-        fontWeight: 'bold'
     }
 };
 

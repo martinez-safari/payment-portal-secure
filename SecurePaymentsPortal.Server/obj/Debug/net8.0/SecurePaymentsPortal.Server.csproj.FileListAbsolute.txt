@@ -98,6 +98,7 @@ C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj
 C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\SecurePaymentsPortal.Server.csproj.CoreCompileInputs.cache
 C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\SecurePaymentsPortal.Server.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\SecurePaymentsPortal.Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\SecurePaymentsPortal.Server.sourcelink.json
 C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\scopedcss\bundle\SecurePaymentsPortal.Server.styles.css
 C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\staticwebassets.development.json
@@ -115,4 +116,3 @@ C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj
 C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\SecurePaymentsPortal.Server.pdb
 C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\SecurePaymentsPortal.Server.genruntimeconfig.cache
 C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\ref\SecurePaymentsPortal.Server.dll
-C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\SecurePaymentsPortal.Server.sourcelink.json
