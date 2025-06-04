@@ -115,3 +115,4 @@ C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj
 C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\SecurePaymentsPortal.Server.pdb
 C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\SecurePaymentsPortal.Server.genruntimeconfig.cache
 C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\ref\SecurePaymentsPortal.Server.dll
+C:\Users\Owner\source\repos\SecurePaymentsPortal\SecurePaymentsPortal.Server\obj\Debug\net8.0\SecurePaymentsPortal.Server.sourcelink.json

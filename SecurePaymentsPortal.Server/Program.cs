@@ -52,7 +52,7 @@ app.Use(async (ctx, next) =>
 // ✅ Enable CORS
 app.UseCors("AllowAll");
 
-// ✅ Auth pipeline (optional if [Authorize] is used)
+// ✅ Auth pipeline 
 app.UseAuthorization();
 
 // ✅ Map API

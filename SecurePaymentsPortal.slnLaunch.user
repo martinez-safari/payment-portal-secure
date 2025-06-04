@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "securepaymentsportal.client\\securepaymentsportal.client.esproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "SecurePaymentsPortal.Server\\SecurePaymentsPortal.Server.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
