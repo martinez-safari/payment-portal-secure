@@ -32,21 +32,17 @@ jobs:
 
   sonarcloud_scan:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/node:18.20-browsers
     steps:
       - checkout
       - attach_workspace:
           at: .
       - run:
-          name: Install Java, unzip, and Node.js
+          name: Confirm Java, Node, and unzip are available
           command: |
-            apt-get update
-            apt-get install -y openjdk-17-jdk unzip curl gnupg
-            curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-            apt-get install -y nodejs
-      - run:
-          name: Set JAVA_HOME
-          command: echo 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64' >> $BASH_ENV
+            java -version
+            node -v
+            unzip -v
       - sonarcloud/scan
 
 workflows:
