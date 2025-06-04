@@ -6,32 +6,30 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/dotnet:7.0
-
+      - image: mcr.microsoft.com/dotnet/sdk:7.0
     steps:
       - checkout
-
       - run:
-          name: Restore Dependencies
+          name: Restore dependencies
           command: dotnet restore
-
       - run:
-          name: Build Solution
+          name: Build project
           command: dotnet build --no-restore
-
       - run:
-          name: Run Tests
-          command: dotnet test --no-build --collect:"XPlat Code Coverage"
+          name: Run tests
+          command: dotnet test --no-build --logger:trx
 
-      - run:
-          name: Generate Coverage Report
-          command: |
-            dotnet tool install --global dotnet-reportgenerator-globaltool
-            reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage-report -reporttypes:Html
-
+  sonarcloud_scan:
+    docker:
+      - image: mcr.microsoft.com/dotnet/sdk:7.0
+    steps:
+      - checkout
       - sonarcloud/scan
 
 workflows:
-  main:
+  build-and-analyze:
     jobs:
       - build
+      - sonarcloud_scan:
+          requires:
+            - build
