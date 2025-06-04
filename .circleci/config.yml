@@ -12,8 +12,10 @@ jobs:
       - run:
           name: Install Node.js
           command: |
-            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-            sudo apt-get install -y nodejs
+            apt-get update
+            apt-get install -y curl gnupg
+            curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+            apt-get install -y nodejs
       - run:
           name: Restore dependencies
           command: dotnet restore
@@ -38,10 +40,10 @@ jobs:
       - run:
           name: Install unzip and Node.js
           command: |
-            sudo apt-get update
-            sudo apt-get install -y unzip curl gnupg
-            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-            sudo apt-get install -y nodejs
+            apt-get update
+            apt-get install -y unzip curl gnupg
+            curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+            apt-get install -y nodejs
       - sonarcloud/scan
 
 workflows:
